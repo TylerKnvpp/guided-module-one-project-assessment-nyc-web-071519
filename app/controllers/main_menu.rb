@@ -7,7 +7,7 @@ def launch_main_menu
     user_input_mm = gets.chomp
     case user_input_mm.downcase 
     when "1" || "create" || "create a datenight"
-        create_a_datenight
+        create_datenight
     when "2" || "upcoming" || "view upcoming" || "view upcoming dates"
         view_past_datenights
     when "3" || "past" || "view past" || "view upcoming dates"
@@ -15,7 +15,7 @@ def launch_main_menu
     when "4" || "log out" || "exit" || "log" || "gtfo"
         start_prompt
     else 
-        "Ya done goofed, bud."
+        "Please enter a valid response."
         launch_main_menu
     end
 

@@ -2,6 +2,7 @@ require_relative '../config/environment'
 require_relative './controllers/account_setup' #maybe change?
 # Dir[".controllers/*.rb"].each {|file| require_relative file }
 require_relative './controllers/main_menu'
+require_relative './controllers/create_datenight'
 require 'pry'
 
 #GLOBAL VARIABLE TO SAVE COUPLE_ID
