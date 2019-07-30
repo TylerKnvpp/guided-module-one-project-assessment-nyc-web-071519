@@ -1,4 +1,4 @@
-def start_prompt
+def launch_login_menu
     puts "D A T E  N I G H T"
     puts "1. Log in"
     puts "or"
@@ -13,7 +13,7 @@ def start_prompt
         return
     else
         puts "Please enter one of the above options"
-        start_prompt
+        launch_login_menu
     end
 end
 
