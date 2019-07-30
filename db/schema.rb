@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_29_210800) do
+ActiveRecord::Schema.define(version: 2019_07_30_204138) do
 
   create_table "couples", force: :cascade do |t|
     t.string "username"
@@ -27,12 +27,13 @@ ActiveRecord::Schema.define(version: 2019_07_29_210800) do
   end
 
   create_table "restaurants", force: :cascade do |t|
-    t.integer "zomato_id"
+    t.string "yelp_id"
     t.string "name"
-    t.integer "zip"
     t.string "neighborhood"
     t.float "rating"
-    t.float "avg_cost"
+    t.string "price"
+    t.string "phone_num"
+    t.string "url"
   end
 
 end

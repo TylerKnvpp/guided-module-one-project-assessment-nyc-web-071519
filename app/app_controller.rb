@@ -12,7 +12,7 @@ def logged_in_couple
     Couple.find($LOGGED_IN_ID)
 end
 
-start_prompt
+launch_login_menu
 
 binding.pry
 puts "hello world"

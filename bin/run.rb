@@ -1,7 +1,7 @@
 require_relative '../config/environment'
 require_relative '../app/app_controller.rb'
 
-start_prompt
+launch_login_menu
 
 puts "hello world"
 
