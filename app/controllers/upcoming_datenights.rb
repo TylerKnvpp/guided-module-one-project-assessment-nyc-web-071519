@@ -22,14 +22,14 @@ def launch_upcoming_datenights_menu
         launch_main_menu
     else
         puts "\nERROR: Enter a valid response.\n"
-        launch_past_datenights_menu
+        launch_upcoming_datenights_menu
     end
 
 
 end
 
 
-def view_user_upcoming_datenights
+def user_upcoming_datenights
     all_datenights = user_all_datenights
     all_datenights.select do |date| 
         if date.planned_date
@@ -40,7 +40,7 @@ end
 
 def view_future_datenights
     temp_string = ''
-    view_user_upcoming_datenights.each do |datenight|
+    user_upcoming_datenights.each do |datenight|
         temp_string = temp_string + "\n#{datenight.restaurant.name.titleize} on #{datenight.planned_date}"
     end
     header_string = ':: Future Datenights ::'
@@ -48,14 +48,14 @@ def view_future_datenights
     launch_upcoming_datenights_menu
 end
 
-# call view_user_upcoming_datenights
+# call user_upcoming_datenights
 # ^ returns user's upcoming dates
 # print user's upcoming dates w/ index number + 1
 
 
 def dates_index_helper
     mt_string = ''
-    dates_array = view_user_upcoming_datenights
+    dates_array = user_upcoming_datenights
     datenight_index = 1
 
     dates_array.each do |dn|
@@ -68,18 +68,30 @@ end
 
 
 def cancel_upcoming_date
-
-
     dates_index_helper
-
     puts %Q(
 
 If you would like to cancel a date, enter the number of the date to cancel. 
-Enter back or exit to return to menu.
+Enter 0 to return to menu.
 
     ) 
 
-    user_input_cancel_date = gets.chomp
-
+    user_input_cancel_date = gets.chomp.to_i
+    # case user_input_cancel_date
+    #     binding.pry
+    # when (user_input_cancel_date.to_i < (user_upcoming_datenights.length))
+    #     user_upcoming_datenights[user_input_cancel_date.to_i - 1].destroy
+    # when 'back','exit','gtfo'
+    #     launch_upcoming_datenights_menu
+    if (user_input_cancel_date == 0)
+        launch_upcoming_datenights_menu
+    elsif (user_input_cancel_date <= user_upcoming_datenights.length)
+        user_upcoming_datenights[(user_input_cancel_date.to_i - 1)*-1].destroy
+        puts "\n Cancelled date!\n"
+        launch_upcoming_datenights_menu
+    else
+        puts "\nPlease enter a valid input.\n"
+        cancel_upcoming_date
+    end
 end
 
