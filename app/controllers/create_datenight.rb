@@ -47,7 +47,9 @@ def create_date_night_menu_helper
 
         2. See restaurant details.
 
-        3. Exit
+        3. Get a new recommendation.
+
+        4. Exit
         )
     user_input_save_or_get = gets.chomp
     case user_input_save_or_get.downcase
@@ -58,7 +60,9 @@ def create_date_night_menu_helper
         launch_main_menu
     when '2','details','see details','see restaurant details'
         show_restaurant_details(possible_rest)
-    when '3','exit'
+    when '3','new','try again', 'get a new recommendation','new rec','get new rec','get new recommendation'
+        create_date_night_menu_helper
+    when '4','exit','bye', 'gtfo', 'c ya'
         launch_main_menu
     else
         puts "Please enter a valid response."
@@ -91,7 +95,9 @@ def show_restaurant_details(restaurant)
     show_table(rest_deets, header)
     puts %Q(
         1. Save this date.
+
         2. Get a new recommendation
+
         3. Exit
         )
     user_input_save_or_new = gets.chomp
@@ -103,7 +109,7 @@ def show_restaurant_details(restaurant)
         launch_main_menu
     when '2','new','get new','get a new recommendation','new rec','get new rec','get new recommendation'
         create_date_night_menu_helper
-    when '3','exit'
+    when '3','exit','bye', 'gtfo', 'c ya'
         launch_main_menu
     else
         puts "\nPlease enter a valid response.\n"

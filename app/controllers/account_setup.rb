@@ -15,7 +15,7 @@ def launch_login_menu
         login_method
     when '2','sign up'
         sign_up_method
-    when '3','exit'
+    when '3','exit', "gtfo",'bye', 'gtfo', 'c ya'
         return exit
     else
         puts "\nPlease enter a valid option"
@@ -58,7 +58,7 @@ def failed_attempt
         login_attempt 
     when '2','sign up','sign up for a new account','new'
         sign_up_method
-    when '3','exit'
+    when '3','exit', "gtfo",'bye', 'gtfo', 'c ya'
         return exit
     else
         failed_attempt

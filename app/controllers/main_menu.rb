@@ -2,13 +2,13 @@ def launch_main_menu
     puts %Q(
     :: Welcome to the main menu, #{logged_in_couple.full_name}! ::
 
-    1. Create a DateNight
+        1. Create a DateNight
 
-    2. View Upcoming DateNights
+        2. View Upcoming DateNights
 
-    3. View Past DateNights
+        3. View Past DateNights
 
-    4. Log Out
+        4. Log Out
 
     )
     user_input_mm = gets.chomp
@@ -19,7 +19,7 @@ def launch_main_menu
         launch_upcoming_datenights_menu
     when "3","past","view past","view upcoming dates"
         launch_past_datenights_menu
-    when "4","log out","exit","log","gtfo"
+    when "4","log out","exit","log","gtfo",'bye', 'gtfo', 'c ya'
         launch_login_menu
     else 
         "Please enter a valid response."

@@ -5,6 +5,7 @@ require_relative './controllers/account_setup' #maybe change?
 require_relative './controllers/main_menu'
 require_relative './controllers/create_datenight'
 require_relative './controllers/past_datenights'
+require_relative './controllers/upcoming_datenights'
 require 'pry'
 
 #GLOBAL VARIABLE TO SAVE COUPLE_ID
@@ -22,6 +23,3 @@ def show_table (string, header)
     puts "\n#{divider}"
 end
 
-#launch_login_menu
-
-#binding.pry
