@@ -11,6 +11,7 @@ BUSINESS_PATH = "/v3/businesses/"
 DEFAULT_TERM = "dinner"
 DEFAULT_LOCATION = "New York City, NY"
 SEARCH_LIMIT = 1
+#RATINGS_LIMIT = 3
 
 $LOCATION = ''
 $DAY_OF = ''
@@ -21,7 +22,8 @@ def fetch_restaurants(location, offset)
             term: DEFAULT_TERM,
             location: location,
             offset: offset,
-            limit: SEARCH_LIMIT
+            limit: SEARCH_LIMIT,
+            sort_by: 'rating'
         }
   response = HTTP.auth("Bearer #{ENV['YELP_API_KEY']}").get(url, params: params)
   response.parse
@@ -35,7 +37,16 @@ def return_random_restaurant
     end
     random_offset = rand(0..(total - 1))
     rest_hash = fetch_restaurants($LOCATION, random_offset)
-    Restaurant.new(yelp_id: rest_hash['businesses'][0]['id'], name: rest_hash['businesses'][0]['name'], neighborhood: $LOCATION, rating: rest_hash['businesses'][0]['rating'], price: rest_hash['businesses'][0]['price'], phone_num: rest_hash['businesses'][0]['phone'], url: rest_hash['businesses'][0]['url'])  
+    if check_if_in_table(rest_hash) 
+        Restaurant.find_by(yelp_id: rest_hash['businesses'][0]['id'])
+    else 
+        Restaurant.new(yelp_id: rest_hash['businesses'][0]['id'], name: rest_hash['businesses'][0]['name'], neighborhood: $LOCATION, rating: rest_hash['businesses'][0]['rating'], price: rest_hash['businesses'][0]['price'], phone_num: rest_hash['businesses'][0]['phone'], url: rest_hash['businesses'][0]['url'])  
+    end
+    #binding.pry
+end
+
+def check_if_in_table(rest_hash)
+    Restaurant.exists?(yelp_id: rest_hash['businesses'][0]['id']) ?  true : false
     #binding.pry
 end
 
@@ -54,7 +65,7 @@ def create_date_night_menu_helper
     user_input_save_or_get = gets.chomp
     case user_input_save_or_get.downcase
     when '1','save','save this date','save date'
-        possible_rest.save
+        possible_rest.save unless Restaurant.exists?(possible_rest.id)
         save_new_date(user_id: $LOGGED_IN_ID, restaurant_id: possible_rest.id, planned_date: $DAY_OF)
         puts "\n\nEnjoy your datenight! Shoot for the stars.\n\n"
         launch_main_menu
@@ -103,7 +114,7 @@ def show_restaurant_details(restaurant)
     user_input_save_or_new = gets.chomp
     case user_input_save_or_new.downcase
     when '1','save','save this date'
-        restaurant.save
+        restaurant.save unless Restaurant.exists?(restaurant.id)
         save_new_date(user_id: $LOGGED_IN_ID, restaurant_id: restaurant.id, planned_date: $DAY_OF)
         puts "\n\nEnjoy your datenight! Shoot for the stars.\n\n"
         launch_main_menu
