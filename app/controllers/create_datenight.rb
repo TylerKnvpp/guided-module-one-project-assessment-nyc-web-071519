@@ -41,17 +41,24 @@ end
 
 def create_date_night_menu_helper
     possible_rest = return_random_restaurant
-    puts "How would you like to go to #{possible_rest.name}?"
-    puts "Enter 1 to save this date or 2 to see restaurant details."
+    puts "\n\nHow would you like to go to #{possible_rest.name}?"
+    puts %Q(
+        1. Save this date.
+
+        2. See restaurant details.
+
+        3. Exit
+        )
     user_input_save_or_get = gets.chomp
     case user_input_save_or_get.downcase
-    when '1'
+    when '1','save','save this date','save date'
         possible_rest.save
         save_new_date(user_id: $LOGGED_IN_ID, restaurant_id: possible_rest.id, planned_date: $DAY_OF)
-        puts 'Enjoy your datenight! Shoot for the stars.'
-    when '2'
+        puts "\n\nEnjoy your datenight! Shoot for the stars.\n\n"
+        launch_main_menu
+    when '2','details','see details','see restaurant details'
         show_restaurant_details(possible_rest)
-    when 'exit'
+    when '3','exit'
         launch_main_menu
     else
         puts "Please enter a valid response."
@@ -60,9 +67,9 @@ def create_date_night_menu_helper
 end
 
 def launch_create_datenight_menu
-    puts "Please enter a neighborhood or location for your date."
+    puts "\n\nPlease enter a neighborhood or location for your date."
     $LOCATION = gets.chomp 
-    puts "When's your hot date?"
+    puts "\nWhen's your hot date? (dd-mm-yyyy)"
     $DAY_OF = gets.chomp
     create_date_night_menu_helper
 end
@@ -72,27 +79,34 @@ def save_new_date(hash)
 end
 
 def show_restaurant_details(restaurant)
-    puts %Q(
-        Name: #{restaurant.name}
-        Neighborhood: #{restaurant.neighborhood}
-        Rating: #{restaurant.rating}
-        Price: #{restaurant.price}
-        Phone: #{restaurant.phone_num}
-        URL: #{restaurant.url}
+    rest_deets =  %Q(
+    Name: #{restaurant.name}
+    Neighborhood: #{restaurant.neighborhood}
+    Rating: #{restaurant.rating}
+    Price: #{restaurant.price}
+    Phone: #{restaurant.phone_num}
+    URL: #{restaurant.url}
     )
-    puts 'Enter 1 to save this date or 2 to get a new recommendation'
+    header =  ':: Restaurant Details ::'
+    show_table(rest_deets, header)
+    puts %Q(
+        1. Save this date.
+        2. Get a new recommendation
+        3. Exit
+        )
     user_input_save_or_new = gets.chomp
     case user_input_save_or_new.downcase
-    when '1'
+    when '1','save','save this date'
         restaurant.save
         save_new_date(user_id: $LOGGED_IN_ID, restaurant_id: restaurant.id, planned_date: $DAY_OF)
-        puts 'Enjoy your datenight! Shoot for the stars.'
-    when '2'
+        puts "\n\nEnjoy your datenight! Shoot for the stars.\n\n"
+        launch_main_menu
+    when '2','new','get new','get a new recommendation','new rec','get new rec','get new recommendation'
         create_date_night_menu_helper
-    when 'exit'
+    when '3','exit'
         launch_main_menu
     else
-        puts "Please enter a valid response."
+        puts "\nPlease enter a valid response.\n"
         show_restaurant_details
     end
     #binding.pry

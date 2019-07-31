@@ -1,0 +1,2 @@
+SELECT name, file FROM pragma_database_list;
+-- PRAGMA database_list;
