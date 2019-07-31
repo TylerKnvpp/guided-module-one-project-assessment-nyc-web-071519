@@ -11,6 +11,7 @@ require 'pry'
 #GLOBAL VARIABLE TO SAVE COUPLE_ID
 $LOGGED_IN_ID = nil
 
+
 def logged_in_couple
     Couple.find($LOGGED_IN_ID)
 end
@@ -22,4 +23,6 @@ def show_table (string, header)
     puts string
     puts "\n#{divider}"
 end
+
+
 

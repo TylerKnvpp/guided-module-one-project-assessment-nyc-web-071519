@@ -1,3 +1,23 @@
+
+# ADVICE ARRAY FOR RELATIONSHIP ADVICE WITHIN UPCOMING DATES
+$ADVICE_ARRAY = [
+        'Break up with them',
+        'Shoot for the stars',
+        'Go to more expensive restaurants',
+        'Listen to your heart',
+        'Ask again later',
+        'Brush your teeth',
+        'No seriously, brush your teeth',
+        "Also floss",
+        "Never laugh at your date's choices.  You are one of them.",
+        'Happy wife, happy life'
+    ]
+
+
+#GLOBAL VARIABLE FOR RELATIONSHIP ADVICE
+$DR_PHIL = rand($ADVICE_ARRAY.length - 1)
+
+
 def launch_upcoming_datenights_menu
     puts %Q(
         1. View upcoming datenights.
@@ -48,11 +68,6 @@ def view_future_datenights
     launch_upcoming_datenights_menu
 end
 
-# call user_upcoming_datenights
-# ^ returns user's upcoming dates
-# print user's upcoming dates w/ index number + 1
-
-
 def dates_index_helper
     mt_string = ''
     dates_array = user_upcoming_datenights
@@ -75,14 +90,7 @@ If you would like to cancel a date, enter the number of the date to cancel.
 Enter 0 to return to menu.
 
     ) 
-
     user_input_cancel_date = gets.chomp.to_i
-    # case user_input_cancel_date
-    #     binding.pry
-    # when (user_input_cancel_date.to_i < (user_upcoming_datenights.length))
-    #     user_upcoming_datenights[user_input_cancel_date.to_i - 1].destroy
-    # when 'back','exit','gtfo'
-    #     launch_upcoming_datenights_menu
     if (user_input_cancel_date == 0)
         launch_upcoming_datenights_menu
     elsif (user_input_cancel_date <= user_upcoming_datenights.length)
@@ -95,3 +103,17 @@ Enter 0 to return to menu.
     end
 end
 
+def give_relationship_advice
+
+    if $DR_PHIL >= $ADVICE_ARRAY.length
+        $DR_PHIL = 0
+    end
+
+    puts %Q(
+        :: #{$ADVICE_ARRAY[$DR_PHIL]} ::
+
+    )
+    $DR_PHIL += 1
+    
+    launch_upcoming_datenights_menu
+end
