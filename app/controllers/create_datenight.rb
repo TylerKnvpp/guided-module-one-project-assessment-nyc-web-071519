@@ -16,6 +16,7 @@ SEARCH_LIMIT = 1
 $LOCATION = ''
 $DAY_OF = ''
 
+
 def fetch_restaurants(location, offset)
       url = "#{API_HOST}#{SEARCH_PATH}"
         params = {
@@ -43,7 +44,8 @@ def return_random_restaurant
     if check_if_in_table(rest_hash) 
         Restaurant.find_by(yelp_id: rest_hash['businesses'][0]['id'])
     else 
-        Restaurant.new(yelp_id: rest_hash['businesses'][0]['id'], name: rest_hash['businesses'][0]['name'], neighborhood: $LOCATION, rating: rest_hash['businesses'][0]['rating'], price: rest_hash['businesses'][0]['price'], phone_num: rest_hash['businesses'][0]['phone'], url: rest_hash['businesses'][0]['url'])  
+        url_to_shorten = rest_hash['businesses'][0]['url']
+        Restaurant.new(yelp_id: rest_hash['businesses'][0]['id'], name: rest_hash['businesses'][0]['name'], neighborhood: $LOCATION, rating: rest_hash['businesses'][0]['rating'], price: rest_hash['businesses'][0]['price'], phone_num: rest_hash['businesses'][0]['phone'], url: url_to_shorten)  
     end
     #binding.pry
 end

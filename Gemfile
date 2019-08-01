@@ -9,3 +9,4 @@ gem "faker"
 gem "dotenv"
 gem "http"
 gem 'colorize'
+gem 'bitly'
