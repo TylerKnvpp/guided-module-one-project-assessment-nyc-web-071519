@@ -82,13 +82,21 @@ def create_date_night_menu_helper
 end
 
 def launch_create_datenight_menu
+    prompt_date_location
+    prompt_date_day_of
+    create_date_night_menu_helper
+end
+
+def prompt_date_location
     puts "\n\nPlease enter a neighborhood or location for your date."
     user_input_location = gets.chomp 
     user_input_location == 'exit' ? launch_main_menu : ($LOCATION = user_input_location)
+end
+
+def prompt_date_day_of
     puts "\nWhen's your hot date? (dd-mm-yyyy)"
     user_input_day_of = gets.chomp 
     user_input_day_of == 'exit' ? launch_main_menu : ($DAY_OF = user_input_day_of)
-    create_date_night_menu_helper
 end
 
 def save_new_date(hash)
