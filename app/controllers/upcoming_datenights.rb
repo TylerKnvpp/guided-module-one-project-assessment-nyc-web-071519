@@ -80,7 +80,7 @@ def dates_index_helper
     end
     puts "\n\n"
     puts mt_string
-    puts "You have no upcoming dates.\n" if mt_string = ''
+    puts "You have no upcoming dates.\n" if mt_string == ''
 end
 
 

@@ -29,6 +29,9 @@ def fetch_restaurants(location, offset)
   response.parse
 end
 
+# def fetch_event
+
+# end
 
 def return_random_restaurant
     total = fetch_restaurants($LOCATION, 0)['total']
