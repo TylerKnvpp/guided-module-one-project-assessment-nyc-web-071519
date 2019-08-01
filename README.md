@@ -1,1 +1,1 @@
-![Datenight logo](datenight_logo_readme.png)
+![Datenight logo](public/assets/datenight_logo_readme.png)
