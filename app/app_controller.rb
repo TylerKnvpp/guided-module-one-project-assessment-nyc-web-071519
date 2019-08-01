@@ -18,11 +18,19 @@ end
 
 def show_table (string, header)
     divider = '--------------------------------------------------------------'
-    puts divider
-    puts "\n#{header}"
-    string == '' ? (puts "\nThere is nothing here! You should go on more dates.") : (puts string)
-    puts "\n#{divider}"
+    puts %Q(
+
+#{divider}
+#{header.light_cyan}
+#{check_mt_string(string)}
+
+#{divider}
+    ).on_black 
+
+
 end
 
-
+def check_mt_string(string)
+    string == '' ? ("There is nothing here! You should go on more dates.") : (string)
+end
 

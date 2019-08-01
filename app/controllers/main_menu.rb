@@ -1,6 +1,7 @@
 def launch_main_menu
     puts %Q(
-    :: Welcome to the main menu, #{logged_in_couple.full_name}! ::
+
+    :: Welcome to the main menu, #{logged_in_couple.full_name.green}! ::
 
         1. Create a DateNight
 
@@ -10,7 +11,7 @@ def launch_main_menu
 
         4. Log Out
 
-    )
+    ).on_black
     user_input_mm = gets.chomp
     case user_input_mm.downcase 
     when "1","create","create a datenight"
@@ -22,7 +23,7 @@ def launch_main_menu
     when "4","log out","exit","log","gtfo",'bye', 'gtfo', 'c ya'
         launch_login_menu
     else 
-        "Please enter a valid response."
+        puts "ERROR: Please enter a valid option."
         launch_main_menu
     end  
 end

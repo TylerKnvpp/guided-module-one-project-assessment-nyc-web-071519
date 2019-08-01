@@ -55,8 +55,10 @@ end
 
 def create_date_night_menu_helper
     possible_rest = return_random_restaurant
-    puts "\n\nHow would you like to go to #{possible_rest.name}?"
     puts %Q(
+
+How would you like to go to #{possible_rest.name.light_cyan}?
+
         1. Save this date.
 
         2. See restaurant details.
@@ -64,13 +66,15 @@ def create_date_night_menu_helper
         3. Get a new recommendation.
 
         4. Exit
-        )
+        ).on_black
     user_input_save_or_get = gets.chomp
     case user_input_save_or_get.downcase
     when '1','save','save this date','save date'
         possible_rest.save unless Restaurant.exists?(possible_rest.id)
         save_new_date(couple_id: $LOGGED_IN_ID, restaurant_id: possible_rest.id, planned_date: $DAY_OF)
-        puts "\n\nEnjoy your datenight! Shoot for the stars.\n\n"
+        puts %Q(
+            Enjoy your datenight! Shoot for the stars 🌟
+        ).on_black
         launch_main_menu
     when '2','details','see details','see restaurant details'
         show_restaurant_details(possible_rest)
@@ -79,7 +83,7 @@ def create_date_night_menu_helper
     when '4','exit','bye', 'gtfo', 'c ya'
         launch_main_menu
     else
-        puts "Please enter a valid response."
+        puts "ERROR: Please enter a valid option."
         create_date_night_menu_helper
     end
 end
@@ -91,13 +95,15 @@ def launch_create_datenight_menu
 end
 
 def prompt_date_location
-    puts "\n\nPlease enter a neighborhood or location for your date."
+    puts %Q(
+Please enter a neighborhood or location for your date.).on_black
     user_input_location = gets.chomp 
     user_input_location == 'exit' ? launch_main_menu : ($LOCATION = user_input_location)
 end
 
 def prompt_date_day_of
-    puts "\nWhen's your hot date? (dd-mm-yyyy)"
+    puts %Q(
+ When's your hot date? (dd-mm-yyyy)).on_black
     user_input_day_of = gets.chomp 
     user_input_day_of == 'exit' ? launch_main_menu : ($DAY_OF = user_input_day_of)
 end
@@ -114,29 +120,32 @@ def show_restaurant_details(restaurant)
     Price: #{restaurant.price}
     Phone: #{restaurant.phone_num}
     URL: #{restaurant.url}
-    )
+    ).on_black
     header =  ':: Restaurant Details ::'
     show_table(rest_deets, header)
     puts %Q(
+
         1. Save this date.
 
         2. Get a new recommendation
 
         3. Exit
-        )
+        ).on_black
     user_input_save_or_new = gets.chomp
     case user_input_save_or_new.downcase
     when '1','save','save this date'
         restaurant.save unless Restaurant.exists?(restaurant.id)
         save_new_date(couple_id: $LOGGED_IN_ID, restaurant_id: restaurant.id, planned_date: $DAY_OF)
-        puts "\n\nEnjoy your datenight! Shoot for the stars.\n\n"
+        puts puts %Q(
+            Enjoy your datenight! Shoot for the stars🌟
+        ).on_black
         launch_main_menu
     when '2','new','get new','get a new recommendation','new rec','get new rec','get new recommendation'
         create_date_night_menu_helper
     when '3','exit','bye', 'gtfo', 'c ya'
         launch_main_menu
     else
-        puts "\nPlease enter a valid response.\n"
+        puts "\nERROR: Please enter a valid option.\n"
         show_restaurant_details
     end
     #binding.pry

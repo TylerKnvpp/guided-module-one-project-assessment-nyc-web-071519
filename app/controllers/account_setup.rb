@@ -24,7 +24,7 @@ def launch_login_menu
     when '3','exit', "gtfo",'bye', 'gtfo', 'c ya'
         return exit
     else
-        puts "\nPlease enter a valid option"
+        puts "ERROR: Please enter a valid option."
         launch_login_menu
     end
 end
@@ -86,9 +86,9 @@ end
 def sign_up_method
     puts %Q(
 
-     :: Welcome to DateNight! ::
+     :: 🍷 Welcome to DateNight! 🍝  ::
 
-     :: Shoot for the Stars!  ::
+     :: 🌟 Shoot for the Stars! 🌟  ::
 
 
 Please add your name, username & password. Enter exit at any time to quit.

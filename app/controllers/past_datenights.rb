@@ -1,11 +1,12 @@
 def launch_past_datenights_menu
     puts %Q(
+
         1. Most popular datenight restaurant.
         
         2. View all past dates.
         
         3. Go back
-    )
+    ).on_black
     user_input_past_date = gets.chomp
     case user_input_past_date.downcase
     when '1','datenights','datenight'
@@ -49,6 +50,7 @@ def view_most_popular_datenight
     pop_res = all_dates.compact.max_by{|restaurant| all_dates.count(restaurant)}
     if pop_res
         puts %Q(
+
     Your favorite restaurant is:
 
         Name: #{pop_res.name}
@@ -58,7 +60,7 @@ def view_most_popular_datenight
         Rating: #{pop_res.rating}
 
         Cost: #{pop_res.price}
-        )
+        ).on_black
         recommend_from_popular(pop_res)
     else
         puts"\nYou have no favorite restaurant."
@@ -69,20 +71,26 @@ end
 
 def recommend_from_popular (restaurant)
     puts %Q(
-    1. Create new date at this restaurant.
-    2. Go back.
-    )
+
+        1. Create new date at this restaurant.
+
+        2. Go back.
+    ).on_black
     user_input_rfp = gets.chomp
     case user_input_rfp
     when '1','new','create new'
         prompt_date_day_of
         save_new_date(couple_id: $LOGGED_IN_ID, restaurant_id: restaurant.id, planned_date: $DAY_OF)
-        puts "\n\nEnjoy your datenight! Shoot for the stars.\n\n"
+        puts puts %Q(
+            Enjoy your datenight! Shoot for the stars 🌟
+        ).on_black
         launch_past_datenights_menu
     when '2','go back','exit','back','gtfo'
         launch_past_datenights_menu
     else
-        puts"\nPlease enter a valid response\n"
+        puts"\nERROR: Please enter a valid option.\n"
         recommend_from_popular(restaurant)
     end
+
+    
 end

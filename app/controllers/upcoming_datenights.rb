@@ -1,16 +1,34 @@
 
 # ADVICE ARRAY FOR RELATIONSHIP ADVICE WITHIN UPCOMING DATES
 $ADVICE_ARRAY = [
-        'Break up with them',
-        'Shoot for the stars',
-        'Go to more expensive restaurants',
-        'Listen to your heart',
-        'Ask again later',
-        'Brush your teeth',
-        'No seriously, brush your teeth',
-        "Also floss",
-        "Never laugh at your date's choices.  You are one of them.",
-        'Happy wife, happy life'
+        '🥺 Break up with them  💔',
+        '🌟 Shoot for the stars  🌟',
+        'Take them to a more expensive restaurant  🤑',
+        'Listen to your heart  🥰',
+        'Ask again later 🙄',
+        'Brush your teeth 😁',
+        'No seriously, brush your teeth 🦷',
+        "Also floss 👄",
+        "Never laugh at your date's choices. You are one of them.  😂",
+        'Happy wife, happy life',
+        'Don\'t fake it',
+        '🤬 Never go to sleep angry 😴',
+        'Humility is sexy',
+        'Live in the moment',
+        'Call your mother ☎️',
+        '🧠 Think before you speak 🗣',
+        '🤷‍♂️ Outcome uncertain 🤷‍♂',
+        'When you argue, always end by complimenting each other.',
+        'Find peace and happiness in little things',
+        'Being more mindful is always a step in the right direction.',
+        '📞 Phone a friend ☎️',
+        'Change your shirt',
+        'Don\'t order the spaghetti 🍝',
+        'You already know the answer in your heart ❤️',
+        'Make it up as you go',
+        'Have fun!',
+        '🚪 Hold the door 🤵',
+        '🍸 If you drink, don\'t drink too much 🤮'
     ]
 
 
@@ -20,6 +38,7 @@ $DR_PHIL = rand($ADVICE_ARRAY.length - 1)
 
 def launch_upcoming_datenights_menu
     puts %Q(
+
         1. View upcoming datenights.
 
         2. Cancel Date/break up with significant other?
@@ -27,7 +46,7 @@ def launch_upcoming_datenights_menu
         3. Relationship advice?
 
         4. Go back
-    )
+    ).on_black
 
     user_input_upcoming_date = gets.chomp
 
@@ -41,7 +60,7 @@ def launch_upcoming_datenights_menu
     when '4', 'exit', 'go back', 'bye', 'gtfo', 'c ya'
         launch_main_menu
     else
-        puts "\nERROR: Enter a valid response.\n"
+        puts "\nERROR: Please enter a valid option.\n"
         launch_upcoming_datenights_menu
     end
 
@@ -91,7 +110,7 @@ def cancel_upcoming_date
 If you would like to cancel a date, enter the number of the date to cancel. 
 Enter 0 to return to menu.
 
-    ) 
+    ).on_black
     user_input_cancel_date = gets.chomp.to_i
     if (user_input_cancel_date == 0)
         launch_upcoming_datenights_menu
@@ -100,7 +119,7 @@ Enter 0 to return to menu.
         puts "\n Cancelled date!\n"
         launch_upcoming_datenights_menu
     else
-        puts "\nPlease enter a valid input.\n"
+        puts "\nERROR: Please enter a valid option.\n"
         cancel_upcoming_date
     end
 end
@@ -112,9 +131,9 @@ def give_relationship_advice
     end
 
     puts %Q(
-        :: #{$ADVICE_ARRAY[$DR_PHIL]} ::
 
-    )
+        :: #{$ADVICE_ARRAY[$DR_PHIL].light_red} ::
+    ).on_black
     $DR_PHIL += 1
     
     launch_upcoming_datenights_menu
