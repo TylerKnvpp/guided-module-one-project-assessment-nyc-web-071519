@@ -66,7 +66,7 @@ def create_date_night_menu_helper
     case user_input_save_or_get.downcase
     when '1','save','save this date','save date'
         possible_rest.save unless Restaurant.exists?(possible_rest.id)
-        save_new_date(user_id: $LOGGED_IN_ID, restaurant_id: possible_rest.id, planned_date: $DAY_OF)
+        save_new_date(couple_id: $LOGGED_IN_ID, restaurant_id: possible_rest.id, planned_date: $DAY_OF)
         puts "\n\nEnjoy your datenight! Shoot for the stars.\n\n"
         launch_main_menu
     when '2','details','see details','see restaurant details'
@@ -83,9 +83,11 @@ end
 
 def launch_create_datenight_menu
     puts "\n\nPlease enter a neighborhood or location for your date."
-    $LOCATION = gets.chomp 
+    user_input_location = gets.chomp 
+    user_input_location == 'exit' ? launch_main_menu : ($LOCATION = user_input_location)
     puts "\nWhen's your hot date? (dd-mm-yyyy)"
-    $DAY_OF = gets.chomp
+    user_input_day_of = gets.chomp 
+    user_input_day_of == 'exit' ? launch_main_menu : ($DAY_OF = user_input_day_of)
     create_date_night_menu_helper
 end
 
@@ -115,7 +117,7 @@ def show_restaurant_details(restaurant)
     case user_input_save_or_new.downcase
     when '1','save','save this date'
         restaurant.save unless Restaurant.exists?(restaurant.id)
-        save_new_date(user_id: $LOGGED_IN_ID, restaurant_id: restaurant.id, planned_date: $DAY_OF)
+        save_new_date(couple_id: $LOGGED_IN_ID, restaurant_id: restaurant.id, planned_date: $DAY_OF)
         puts "\n\nEnjoy your datenight! Shoot for the stars.\n\n"
         launch_main_menu
     when '2','new','get new','get a new recommendation','new rec','get new rec','get new recommendation'

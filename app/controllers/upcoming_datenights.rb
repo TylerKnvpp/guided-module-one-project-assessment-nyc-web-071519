@@ -61,7 +61,8 @@ end
 def view_future_datenights
     temp_string = ''
     user_upcoming_datenights.each do |datenight|
-        temp_string = temp_string + "\n#{datenight.restaurant.name.titleize} on #{datenight.planned_date}"
+        #binding.pry
+        temp_string = temp_string + "\n#{datenight.restaurant.name.titleize} on #{datenight.planned_date}" if datenight.restaurant
     end
     header_string = ':: Future Datenights ::'
     show_table(temp_string, header_string)
@@ -79,6 +80,7 @@ def dates_index_helper
     end
     puts "\n\n"
     puts mt_string
+    puts "You have no upcoming dates.\n" if mt_string = ''
 end
 
 

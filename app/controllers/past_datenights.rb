@@ -19,7 +19,7 @@ def launch_past_datenights_menu
 end
 
 def user_all_datenights
-    Datenight.where user_id: $LOGGED_IN_ID
+    Datenight.where couple_id: $LOGGED_IN_ID
 end
 
 def user_past_datenights
@@ -34,7 +34,7 @@ end
 def view_past_datenights
     temp_string = ''
     user_past_datenights.each do |datenight|
-        temp_string = temp_string + "\n#{datenight.restaurant.name.titleize} on #{datenight.planned_date}"
+        temp_string = temp_string + "\n#{datenight.restaurant.name.titleize} on #{datenight.planned_date}" if datenight.restaurant
     end
     header_string = ':: Past Datenights ::'
     show_table(temp_string, header_string)
@@ -43,9 +43,10 @@ end
 
 def view_most_popular_datenight
     all_dates = user_all_datenights
-    all_dates = all_dates.map {|datenight| datenight.restaurant}
-    pop_res = all_dates.max_by{|restaurant| all_dates.count(restaurant)}
-    puts %Q(
+    all_dates = all_dates.map {|datenight| datenight.restaurant if datenight.restaurant}
+    pop_res = all_dates.compact.max_by{|restaurant| all_dates.count(restaurant)}
+    if pop_res
+        puts %Q(
     Your most popular restaurant was:
 
         Name: #{pop_res.name}
@@ -56,6 +57,9 @@ def view_most_popular_datenight
 
         Cost: #{pop_res.price}
         )
-        launch_past_datenights_menu 
+    else
+        puts"\nYou have no most popular restarant."
+    end
+    launch_past_datenights_menu 
 end
 
