@@ -1,7 +1,9 @@
 def launch_past_datenights_menu
     puts %Q(
         1. Most popular datenight restaurant.
+        
         2. View all past dates.
+        
         3. Go back
     )
     user_input_past_date = gets.chomp
