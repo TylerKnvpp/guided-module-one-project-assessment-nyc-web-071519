@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_30_204138) do
+ActiveRecord::Schema.define(version: 2019_08_01_132124) do
 
   create_table "couples", force: :cascade do |t|
     t.string "username"
@@ -24,6 +24,19 @@ ActiveRecord::Schema.define(version: 2019_07_30_204138) do
     t.datetime "planned_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "event_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "yelp_id"
+    t.string "name"
+    t.string "neighborhood"
+    t.string "cost"
+    t.string "url"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.text "description"
+    t.boolean "is_free"
   end
 
   create_table "restaurants", force: :cascade do |t|
