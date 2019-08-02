@@ -18,5 +18,5 @@ To get started, fork this repository, copy the clone/download link and head over
 git clone [forked-repository-url]
 cd [forked-repository-url]`
 bundle install
-ruby run.rb
+ruby ./bin/run.rb
 ```
