@@ -15,3 +15,5 @@ Datenight™️ V1 Features:
 To get started, fork this repository, copy the link and head over to your terminal and enter the following commands.
 
 `git clone [forked-repository-url]`
+`cd [forked-repository-url]`
+`ruby run.rb`
