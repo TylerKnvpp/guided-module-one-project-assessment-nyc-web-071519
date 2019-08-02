@@ -4,6 +4,8 @@
 
 Dates can be stressful. Let Datenight™️ pick the restaurant so you can focus on your date.
 
+Oh, and shoot for the stars 💫
+
 Datenight™️ is a CLI application that returns a randomly selected, highly rated restaurant within a neighborhood or location of your choice. Create an account, enter a location + date and pick from one of Datenight's suggestions.
 
 Datenight™️ V1 Features:
