@@ -12,10 +12,11 @@ Datenight™️ V1 Features:
 2. View Information on Upcoming Dates
 3. View Information on Past Dates
 
-To get started, fork this repository, copy the link and head over to your terminal and enter the following commands.
+To get started, fork this repository, copy the clone/download link and head over to your terminal and enter the following commands.
 
 ```
 git clone [forked-repository-url]
 cd [forked-repository-url]`
+bundle install
 ruby run.rb
 ```
